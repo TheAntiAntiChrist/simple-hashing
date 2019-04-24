@@ -3,7 +3,7 @@ from tkinter import *
 
 mainWindow = Tk()
 mainWindow.title("Simple Hashing Program")
-mainWindow.geometry("730x150")
+mainWindow.minsize(730,150)
 
 inputLabel = Label(master=mainWindow,text="Data to be hashed:").grid(row=0,column=0,padx=10,pady=10)
 outputLabel = Label(master=mainWindow,text="Hashed data:").grid(row=1,column=0,padx=10,pady=10)
