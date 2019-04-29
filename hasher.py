@@ -35,7 +35,7 @@ def hashIt(toBeHashed,hashMode):
         hashedData = hashlib.sha224(toBeHashed.encode())
         return hashedData.hexdigest()
 
-def fetchAndHash(event): #event argument is fed into function to bind the function to Return key - stops another function from having to be made.
+def fetchAndHash():
     inputData = inputEntry.get()
     outputData = hashIt(inputData,hashMode)
     outputEntry.config(state=NORMAL)
@@ -43,6 +43,9 @@ def fetchAndHash(event): #event argument is fed into function to bind the functi
     outputEntry.insert(0,outputData)
     outputEntry.config(state="readonly")
 
+def RetfetchAndHash(event):
+    fetchAndHash()
+    
 def copyHashOut():
     r = Tk()
     r.withdraw()
@@ -51,7 +54,7 @@ def copyHashOut():
     r.update() #Updates the clipboard with the text so the data on the clipboard remains after this process is complete and the frame is destroyed
     r.destroy()
 
-mainWindow.bind("<Return>", fetchAndHash) #Binds the return key to the hash function
+mainWindow.bind("<Return>", RetfetchAndHash) #Binds the return key to the hash function
 hashButton = Button(master=mainWindow,text="Hash",width=10,command=fetchAndHash).grid(row=0,column=3,padx=10,pady=10)
 copyButton = Button(master=mainWindow,text="Copy to Clipboard",width=16,command=copyHashOut).grid(row=1,column=3,padx=10,pady=10)
 
